@@ -1,57 +1,41 @@
 package com.elastic.pojo;
 
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.json.simple.JSONArray;
-
-public class ResponseEntity {
+public class ResponseEntity<T> implements Cloneable{
+	private String elasticApiUrl;
+	private T data;	
 	
-	String lbUrl;
-	String elasticApiUrl;
-	CloseableHttpResponse closeableHttpResponse;
-	JSONArray responseJsonArray;
-	Integer statusCode;
+	public ResponseEntity() {
+	}
 	
-	public ResponseEntity(String lbUrl, String elasticApiUrl, CloseableHttpResponse closeableHttpResponse,
-			JSONArray responseJsonArray, Integer statusCode) {
-		super();
-		this.lbUrl = lbUrl;
-		this.elasticApiUrl = elasticApiUrl;
-		this.closeableHttpResponse = closeableHttpResponse;
-		this.responseJsonArray = responseJsonArray;
-		this.statusCode = statusCode;
-	}
-	public String getLbUrl() {
-		return lbUrl;
-	}
-	public void setLbUrl(String lbUrl) {
-		this.lbUrl = lbUrl;
-	}
 	public String getElasticApiUrl() {
 		return elasticApiUrl;
 	}
+
 	public void setElasticApiUrl(String elasticApiUrl) {
 		this.elasticApiUrl = elasticApiUrl;
 	}
-	public CloseableHttpResponse getCloseableHttpResponse() {
-		return closeableHttpResponse;
-	}
-	public void setCloseableHttpResponse(CloseableHttpResponse closeableHttpResponse) {
-		this.closeableHttpResponse = closeableHttpResponse;
-	}
-	public JSONArray getResponseJsonArray() {
-		return responseJsonArray;
-	}
-	public void setResponseJsonArray(JSONArray responseJsonArray) {
-		this.responseJsonArray = responseJsonArray;
-	}
-	public Integer getStatusCode() {
-		return statusCode;
-	}
-	public void setStatusCode(Integer statusCode) {
-		this.statusCode = statusCode;
-	}
-	
-	
-	
 
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+	
+	public ResponseEntity<T> buildElasticApiUrl(String elasticApiUrl){
+		this.setElasticApiUrl(elasticApiUrl);
+		return this;
+	}
+	
+	public ResponseEntity<T> buildData(T data){
+		this.setData(data);
+		return this;
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
 }

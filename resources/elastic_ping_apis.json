@@ -1,0 +1,20 @@
+[
+{
+"api":{
+"apiName":"ping cluster",
+"apiDescription":"",
+"apiPath":"",
+"requestMethod":"GET",
+"apiType":"PING",
+"apiExecutionOrder":"1"
+},
+"apiValidationMessages":
+{
+"startMessage":"Validating whether clusters are reachable or not.",
+"successMessage":"Validation success. Clusters are reachable.",
+"failureMessage":"Validation failed. Clusters are not reachable."
+},
+"validaterClass":"com.elastic.api.response.validation.PingClusterValidater",
+"responseHandlerClass":"com.elastic.response.handler.StatusResponseHandler"
+}
+]

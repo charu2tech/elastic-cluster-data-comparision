@@ -1,23 +1,38 @@
 package com.elastic.util;
 
-import java.util.StringJoiner;
-
-import com.elastic.constants.Elastic;
+import com.elastic.constants.HttpConstants;
 
 public class StringUtil {
 	
-	public static String trimIfNotNull(String data){
-		if(data!=null){
+	public static boolean isNull(String data){
+		return data==null? true : false;
+	}
+	
+	public static boolean isEmpty(String data){
+		return data.trim().isEmpty();
+	}
+	
+	public static boolean isNullOrEmpty(String data){
+		return isNull(data)? true :isEmpty(data);
+	}
+	
+	
+	public static String trimIfNotNullOrEmpty(String data){
+		if(!isNullOrEmpty(data)){
 			data=data.trim();
 		}
 		return data;
-	}
+	}	
 	
-	public static String getUrl(String lbUrl, String apiPath){
-		lbUrl=removeIfEndsWith(lbUrl,Elastic.URI_SEPERATOR.getName());
-		StringJoiner url = new StringJoiner(Elastic.URI_SEPERATOR.getName());
-		url.add(lbUrl);
-		url.add(apiPath);
+	public static String buildUrl(String hostUrl, String apiPath){
+		StringBuilder url=new StringBuilder();
+		url.append(HttpConstants.HTTP.getName());
+		url.append(HttpConstants.PROTOCOL_URL_SEPERATOR.getName());
+		url.append(removeIfEndsWith(hostUrl,HttpConstants.URI_SEPERATOR.getName()));
+		if(!isNullOrEmpty(apiPath)){
+		url.append(HttpConstants.URI_SEPERATOR.getName());
+		url.append(removeIfEndsWith(apiPath,HttpConstants.URI_SEPERATOR.getName()));
+		}		
 		return url.toString();
 	}
 	
@@ -27,14 +42,4 @@ public class StringUtil {
 		}
 		return url;
 	}
-	
-	public static String getElasticJsonFormatQueryParams(){
-		StringBuilder jsonFormatQueryParams=new StringBuilder();
-		jsonFormatQueryParams.append(Elastic.QUERY_PARAM_SEPERATOR.getName())
-							 .append(Elastic.QUERY_PARAM_JSON_FORMATER.getName())
-							 .append(Elastic.QUERY_PARAM_SEPERATOR.getName())
-							 .append(Elastic.QUERY_PARAM_PRETTY.getName());
-		return jsonFormatQueryParams.toString();		
-	}
-
 }

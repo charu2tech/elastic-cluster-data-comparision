@@ -1,0 +1,20 @@
+[
+{
+"api":{
+"apiName":"cluster health",
+"apiDescription":"",
+"apiPath":"_cat/health?h=status,node.total,node.data&format=json&pretty",
+"requestMethod":"GET",
+"apiType":"HEALTH",
+"apiExecutionOrder":"2"
+},
+"apiValidationMessages":
+{
+"startMessage":"Validating whether cluster health is green or yellow.",
+"successMessage":"Validation success. Cluster health is in green or yellow.",
+"failureMessage":"Validation failed. Cluster health is red."
+},
+"validaterClass":"com.elastic.api.response.validation.PingClusterValidater",
+"responseHandlerClass":"com.elastic.response.handler.StatusResponseHandler"
+}
+]

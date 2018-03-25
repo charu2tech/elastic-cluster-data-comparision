@@ -1,6 +1,6 @@
 package com.elastic.constants;
 
-public enum HttpVerb {
+public enum HttpRequestMethod {
 	
 	HEAD("HEAD"),
 	GET("GET"),
@@ -10,7 +10,7 @@ public enum HttpVerb {
 	
 	private String verbName;
 
-	private HttpVerb(String verbName) {
+	private HttpRequestMethod(String verbName) {
 		this.verbName = verbName;
 	}
 

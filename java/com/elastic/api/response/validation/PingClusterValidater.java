@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import com.elastic.pojo.ResponseEntity;
 
-public class ClusterHealthValidater implements ElasticApiValidater<Integer> {
+public class PingClusterValidater implements ElasticApiValidater<Integer> {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClusterHealthValidater.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PingClusterValidater.class);
 	
 	@Override
 	public Boolean validate(List<ResponseEntity<Integer>> responseEntityList) {
